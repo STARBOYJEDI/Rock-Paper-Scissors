@@ -9,10 +9,11 @@ const r1 = readline.createInterface({
 
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
-    const randomIndex = Math.floor(Math.random() * choices.length); // Generate a random index between 0 and 2
-    return choices[randomIndex]; // Returns a random element from the choices array
+    return choices[Math.floor(Math.random() * choices.length)];
+    //const randomIndex = Math.floor(Math.random() * choices.length); // Generate a random index between 0 and 2
+    // return choices[randomIndex]; // Returns a random element from the choices array
 }
-console.log(getComputerChoice());
+// console.log(getComputerChoice());
 
 // function getHumanChoice() {
 //     const choices = ['rock', 'paper', 'scissors'];
@@ -40,8 +41,38 @@ function getHumanChoice() {
     });
 }
 
+async function playGame() {
+    const humanChoice = await getHumanChoice();
+    const computerChoice = getComputerChoice();
+
+    console.log("You chose: " + humanChoice);
+    console.log("Computer chose: " + computerChoice);
+
+    r1.close();
+
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie!");
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
+    }
+}
+
+function playRound(humanChoice, computerChoice) {
+    // your code here!
+}
+
+humanScore = 0;
+computerScore = 0;
 
 
+
+playGame();
 
 
 
