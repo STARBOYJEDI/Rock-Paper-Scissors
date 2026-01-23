@@ -10,24 +10,11 @@ const r1 = readline.createInterface({
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)]; // Generate a random index between 0 and 2
-    //const randomIndex = Math.floor(Math.random() * choices.length); // Generate a random index between 0 and 2
-    // return choices[randomIndex]; // Returns a random element from the choices array
 }
-// console.log(getComputerChoice());
 
-// function getHumanChoice() {
-//     const choices = ['rock', 'paper', 'scissors'];
-//     const userInput = prompt("Enter rock, paper, or scissors: ");
-//     if (choices.includes(userInput)) {
-//         return userInput;
-//     } else {
-//         console.log("Invalid input. Please try again.");
-//         return getHumanChoice(); // Recursively prompt until valid input is received
-//     }
-// }
 
 async function getHumanChoice() {
-    return new Promise(async (resolve) => { // Make the executor async
+    return new Promise((resolve) => { // Make the executor async
         r1.question("Enter rock, paper, or scissors: ", async (answer) => { // Make callback async
             const input = answer.trim().toLowerCase(); // Converts the input from to user to a lower case string
             const choices = ['rock', 'paper', 'scissors']; // Rock, paper, scissors array
@@ -41,7 +28,7 @@ async function getHumanChoice() {
     });
 }
 
-function playRound(humanChoice, computerChoice) { // An async function with parameters for the user and the computer
+function playRound(humanChoice, computerChoice) { // A function with parameters for the user and the computer
     console.log("You chose: " + humanChoice);
     console.log("Computer chose: " + computerChoice);
 
@@ -101,17 +88,3 @@ async function startGame() { // Async function which assigns a value for the hum
 }
 
 startGame();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
