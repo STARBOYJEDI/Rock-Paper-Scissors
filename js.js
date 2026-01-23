@@ -41,14 +41,9 @@ function getHumanChoice() {
     });
 }
 
-async function playGame() {
-    const humanChoice = await getHumanChoice();
-    const computerChoice = getComputerChoice();
-
+async function playRound(humanChoice, computerChoice) {
     console.log("You chose: " + humanChoice);
     console.log("Computer chose: " + computerChoice);
-
-    r1.close();
 
     if (humanChoice === computerChoice) {
         console.log("It's a tie!");
@@ -57,23 +52,52 @@ async function playGame() {
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log("You win!");
+        console.log("user");
     } else {
-        console.log("You lose!");
+        console.log("computer");
     }
 }
 
-function playRound(humanChoice, computerChoice) {
-    // your code here!
+async function startGame() {
+    let humanScore = 0; // Initialize variables with a 0 value.
+    let computerScore = 0; // Initialize variables with a 0 value.
+
+    const totalRounds = 5; //Initialize Rounds variable with a value of 5.
+
+    for (let round = 1; round <= totalRounds; round++)  { // Makes sure that there's only 5 rounds
+        console.log(`\nRound ${round} of ${totalRounds}`);
+
+        const humanSelection = await getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        const winner = playRound(humanSelection, computerSelection);
+
+        if (winner === "user") {
+            humanScore++;
+            console.log("You win this round!");
+        } else if (winner === "computer") {
+            computerScore++;
+            console.log("Computer wins this round!");
+        } else {
+            console.log("This round is a tie!")
+        }
+
+        console.log(`Score: You ${humanScore} - Computer ${computerScore}`);
+    }
+
+    console.log("\n--- FINAL RESULT ---");
+    if (humanScore > computerScore) {
+        console.log("You win the game!");
+    } else if (computerScore > humanScore) {
+        console.log("Computer wins the game!");
+    } else {
+        console.log("The game ends in a tie!");
+    }
+
+    r1.close();
 }
 
-humanScore = 0;
-computerScore = 0;
-
-
-
-playGame();
-
+startGame();
 
 
 
