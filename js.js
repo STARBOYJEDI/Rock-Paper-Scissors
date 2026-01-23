@@ -40,10 +40,8 @@ function playRound(humanChoice, computerChoice) { // A function with parameters 
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log("user");
         return "user";
     } else {
-        console.log("computer");
         return "computer";
     }
 }
